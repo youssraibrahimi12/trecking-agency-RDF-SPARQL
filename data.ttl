@@ -1,0 +1,229 @@
+@base <http://agency.org/#>.
+@prefix class: <http://agency.org/class#>.
+@prefix prop: <http://agency.org/porp#>.
+@prefix xsd: <https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/>.
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix resource: <http://agency.org/class/resource#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+
+# Transportation Means
+
+resource:Bus
+rdf:type class:TransportMean.
+
+resource:Plane
+rdf:type class:TransportMean.
+
+resource:Boat
+rdf:type class:TransportMean.
+
+resource:Train
+rdf:type class:TransportMean.
+
+
+
+# Resources
+
+# Students + Clients + Guides
+# Students
+resource:Theo
+prop:age 32;
+prop:hasPaid true;
+prop:gender "Male";
+rdf:type class:Student.
+
+resource:Juliette
+prop:age 16;
+prop:hasPaid true;
+prop:gender "Female";
+rdf:type class:Student.
+
+resource:Youssra
+prop:age 24;
+prop:hasPaid false;
+prop:gender "Female";
+rdf:type class:Student.
+
+resource:Alaa
+prop:age 16;
+prop:hasPaid true;
+prop:gender "Male";
+rdf:type class:Student.
+
+# Normal clients
+resource:Sam
+prop:age 32;
+prop:hasPaid true;
+prop:gender "Male";
+rdf:type class:Client.
+
+resource:Samuel
+prop:age 16;
+prop:hasPaid false;
+prop:gender "Male";
+rdf:type class:Client.
+
+resource:Julien
+prop:age 36;
+prop:hasPaid true;
+prop:gender "Male";
+rdf:type class:Client.
+
+resource:Fanny
+prop:age 39;
+prop:hasPaid false;
+prop:gender "Female";
+rdf:type class:Client.
+
+# Guides
+resource:Marine
+prop:age 24;
+prop:hasExperience true;
+prop:gender "Female";
+rdf:type class:Guide.
+
+resource:Zac
+prop:age 19;
+prop:hasExperience false;
+prop:gender "Male";
+rdf:type class:Guide.
+
+resource:Kevin
+prop:age 33;
+prop:hasExperience true;
+prop:gender "Male";
+rdf:type class:Guide.
+
+################
+# Countries    #
+################
+
+#######################
+
+resource:Monaco
+prop:requiresVisa false;
+rdf:type dbo:Country.
+
+resource:France
+prop:requiresVisa false;
+rdf:type dbo:Country.
+
+resource:Italy
+prop:requiresVisa false;
+rdf:type dbo:Country.
+
+resource:India
+prop:requiresVisa true;
+rdf:type dbo:Country.
+
+resource:Tunisia
+prop:requiresVisa true;
+rdf:type dbo:Country.
+
+resource:Morocco
+prop:requiresVisa true;
+rdf:type dbo:Country.
+
+resource:Egypt
+prop:requiresVisa true;
+rdf:type dbo:Country.
+
+
+################
+# Destinations #
+################
+
+resource:Everest
+prop:hasSnow true;
+prop:hasWildAnimals true;
+prop:hostCountry resource:India;
+rdf:type class:Destination.
+
+resource:Volcano
+prop:hasMagma true;
+prop:hostCountry resource:Italy;
+rdf:type class:Destination.
+
+
+resource:Corse
+prop:hasSnow false;
+prop:hasWildAnimals false;
+prop:hostCountry resource:France;
+rdf:type class:Destination.
+
+resource:Alpes
+prop:hasSnow true;
+prop:hasWildAnimals true;
+prop:hostCountry  resource:France, resource:Italy;
+rdf:type class:Destination.
+
+resource:Desert
+prop:hasWind true;
+prop:hasWildAnimals true;
+prop:hostCountry resource:Morocco, resource:Tunisia, resource:Egypt;
+rdf:type class:Destination.
+
+#########
+# Trips #
+#########
+
+resource:TripEverest
+prop:hasClient resource:Sam;
+prop:hasClient resource:Juliette;
+prop:hasClient resource:Theo;
+prop:hasGuide resource:Marine;
+prop:hasDestination resource:Everest;
+prop:transportationBy resource:Plane;
+prop:maxClients 3;
+prop:price 1200;
+rdf:type class:Trip.
+
+resource:TripCorse
+prop:hasClient resource:Sam;
+prop:hasClient resource:Juliette;
+prop:hasClient resource:Theo;
+prop:hasGuide resource:Marine;
+prop:hasDestination resource:Corse;
+prop:transportationBy resource:Boat;
+prop:maxClients 5;
+prop:price 800;
+rdf:type class:Trip.
+
+
+resource:TripDesert
+prop:hasGuide resource:Marine;
+prop:hasClient resource:Youssra;
+prop:hasClient resource:Sam;
+prop:hasClient resource:Alaa;
+prop:hasClient resource:Fanny;
+prop:hasDestination resource:Desert;
+prop:transportationBy resource:Plane;
+prop:price 1000;
+prop:maxClients 5;
+rdf:type class:Trip.
+
+resource:TripVolcano
+prop:hasGuide resource:Marine;
+prop:hasClient resource:Julien;
+prop:hasClient resource:Alaa;
+prop:hasDestination resource:Volcano;
+prop:transportationBy resource:Bus;
+prop:maxClients 3;
+prop:hasStudentDiscount 10;
+prop:price 1000;
+rdf:type class:Trip.
+
+resource:TripAlpes
+prop:hasGuide resource:Kevin;
+prop:hasClient resource:Youssra;
+prop:hasClient resource:Sam;
+prop:hasClient resource:Alaa;
+prop:hasDestination resource:Alpes;
+prop:transportationBy resource:Bus;
+prop:maxClients 3;
+prop:hasStudentDiscount 15;
+prop:price 300;
+rdf:type class:Trip.

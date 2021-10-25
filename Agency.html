@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!--  // We took  CSS (for temlpating) Code from : https://www.w3schools.com/howto/howto_js_collapsible.asp-->
+<html>
+
+<head>
+    <title>Trakking Agency - RDFa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .collapsible:after {
+            content: '\02795';
+            /* Unicode character for "plus" sign (+) */
+            font-size: 13px;
+            color: white;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2796";
+            /* Unicode character for "minus" sign (-) */
+        }
+
+        .collapsible {
+            background-color: #000;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body vocab="http://agency.org/">
+
+    <p style="font-size: 40px;color:red;position: static;position: relative;top: 10px;left: 390px;"> Bienvenue chez
+        <b>votre</b> agence 👋
+    </p>
+
+
+    <button type="button" class="collapsible">Information about our Clients</button>
+
+    <div class="content">
+        <button type="button" class="collapsible">Student Client</button>
+        <div class="content">
+            <!-- Theo -->
+
+            <button type="button" class="collapsible">Theo</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Theo" typeof="Student">
+                    - age : <span property="age">32</span>
+                    </br>
+                    - paid : <span property="hasPaid"> true</span>
+                </div>
+            </div>
+
+            <!---->
+
+
+            <!-- Youssra -->
+            <!---->
+            <button type="button" class="collapsible">Youssra</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Youssra" typeof="Student">
+                    - age : <span property="age">24</span>
+                    </br>
+                    - paid : <span property="hasPaid"> false</span>
+                </div>
+            </div>
+            <!-- alaa -->
+            <button type="button" class="collapsible">Alaa</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Alaa" typeof="Student">
+                    - age : <span property="age">16</span>
+                    </br>
+                    - paid : <span property="hasPaid"> true</span>
+                </div>
+
+                <!--  -->
+                <button type="button" class="collapsible">Juliette</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="Juliette" typeof="Student">
+                        - age : <span property="age">16</span>
+                        </br>
+                        - paid : <span property="hasPaid"> true</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="collapsible">Normal Client</button>
+        <div class="content">
+            <!-- Sam -->
+
+            <button type="button" class="collapsible">Sam</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Sam" typeof="Client">
+                    - age : <span property="age">32</span>
+                    </br>
+                    - paid : <span property="hasPaid"> true</span>
+                </div>
+            </div>
+
+            <!---->
+            <!-- Samuel -->
+
+            <button type="button" class="collapsible">Samuel</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Samuel" typeof="Client">
+                    - age : <span property="age">16</span>
+                    </br>
+                    - paid : <span property="hasPaid"> false</span>
+                </div>
+            </div>
+
+            <!-- Youssra -->
+            <!---->
+            <button type="button" class="collapsible">Julien</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Julien" typeof="Client">
+                    - age : <span property="age">32</span>
+                    </br>
+                    - paid : <span property="hasPaid"> true</span>
+                </div>
+            </div>
+            <!-- alaa -->
+            <button type="button" class="collapsible">Fanny</button>
+            <div class="content">
+                <div vocab="http://agency.org/" resource="Fanny" typeof="Client">
+                    - age : <span property="age">39</span>
+                    </br>
+                    - paid : <span property="hasPaid"> false</span>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <button type="button" class="collapsible">Informations about our Guides</button>
+
+    <div class="content">
+
+
+        <!-- Marine -->
+
+        <button type="button" class="collapsible">Marine</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="marine" typeof="Guide">
+                - age : <span property="age">24</span>
+                </br>
+                - Experience : <span property="hasExperience"> true</span>
+            </div>
+        </div>
+
+
+
+
+        <!-- Zac -->
+        <button type="button" class="collapsible">Zac</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="zac" typeof="Guide">
+                - age : <span property="age">19</span>
+                </br>
+                - Experience : <span property="hasExperience"> false</span>
+            </div>
+        </div>
+
+        <!-- kevin -->
+        <button type="button" class="collapsible">Kevin</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="kevin" typeof="Guide">
+                - age : <span property="age">33</span>
+                </br>
+                - Experience: <span property="hasExperience"> true</span>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="collapsible">Destination by Country</button>
+
+    <div class="content">
+
+        <button type="button" class="collapsible">India</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="india" typeof="country">
+                - requires Visa : <span property="requiresVisa">true</span>
+                </br>
+                <button type="button" class="collapsible">Everest</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="Everest" typeof="destination">
+                        - Snow : <span property="hasSnow">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+                <button type="button" class="collapsible">Desert</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="desert" typeof="destination">
+                        - Wind : <span property="hasWind">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="button" class="collapsible">Italy</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="italy" typeof="country">
+                - requires Visa : <span property="requiresVisa">false</span>
+                </br>
+                <button type="button" class="collapsible">Volcano</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="volcano" typeof="destination">
+                        - Magma : <span property="hasMagma">true</span>
+                        </br>
+
+
+                    </div>
+                </div>
+                <button type="button" class="collapsible">Alpes</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="alpes" typeof="destination">
+                        - Snow : <span property="hasSnow">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="collapsible">France</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="france" typeof="country">
+                - requires Visa : <span property="requiresVisa">false</span>
+                </br>
+                <button type="button" class="collapsible">Corse</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="corse" typeof="destination">
+                        - Snow : <span property="hasSnow">false</span>
+                        </br>
+                        - Wild Animals : <span property="hasSnow">false</span>
+                        </br>
+
+                    </div>
+                </div>
+                <button type="button" class="collapsible">Alpes</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="alpes" typeof="destination">
+                        - Snow : <span property="hasSnow">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="collapsible">Morocco</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="morocco" typeof="country">
+                - requires Visa : <span property="requiresVisa">true</span>
+                </br>
+                <button type="button" class="collapsible">Desert</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="desert" typeof="destination">
+                        - Wind : <span property="hasWind">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="collapsible">Tunisia</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="tunisia" typeof="country">
+                - requires Visa : <span property="requiresVisa">true</span>
+                </br>
+                <button type="button" class="collapsible">Desert</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="desert" typeof="destination">
+                        - Wind : <span property="hasWind">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="collapsible">Egypt</button>
+        <div class="content">
+            <div vocab="http://dbpedia.org/ontology/" resource="egypt" typeof="country">
+                - requires Visa : <span property="requiresVisa">true</span>
+                </br>
+                <button type="button" class="collapsible">Desert</button>
+                <div class="content">
+                    <div vocab="http://agency.org/" resource="desert" typeof="destination">
+                        - Wind : <span property="hasWind">true</span>
+                        </br>
+                        - Wild Animals : <span property="hasWildAnimals"> true</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="collapsible">More Details Trips</button>
+
+    <div class="content">
+
+
+        <!-- Trip everest -->
+
+        <button type="button" class="collapsible">Trip Everest</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="tripeverest" typeof="Trip">
+                - Our Clients for the trip to everes :
+                </br>
+                <span property="hasClient"> sam</span>
+                </br>
+                <span property="hasClient"> Theo</span>
+                </br>
+                <span property="hasClient"> Marine</span>
+                </br>
+
+                - Destination : <span property="hasDestination"> Everis</span>
+                </br>
+                - Transportation By<span property="TransportationBy"> Plane</span>
+                </br>
+                -Price<span property="price"> 1200</span>
+
+                </br>
+                </br>
+            </div>
+        </div>
+
+
+
+        <button type="button" class="collapsible">Trip Corse</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="tripcorse" typeof="Trip">
+                - Our Clients for the trip to corse :
+                </br>
+                <span property="hasClient"> sam</span>
+                </br>
+                <span property="hasClient"> Juliette</span>
+                </br>
+                <span property="hasClient"> Marine</span>
+                </br>
+                <span property="hasClient"> theo</span>
+                </br>
+                - Destination : <span property="hasDestination"> Corse</span>
+                </br>
+                - Transportation By<span property="TransportationBy"> Boat</span>
+                </br>
+                -Price<span property="price"> 800</span>
+
+                </br>
+                </br>
+            </div>
+        </div>
+
+        <button type="button" class="collapsible">Trip Desert</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="tripdesert" typeof="Trip">
+                - Our Clients for the trip to desert :
+                </br>
+                <span property="hasClient"> Youssra</span>
+                </br>
+                <span property="hasClient"> Sam</span>
+                </br>
+                <span property="hasClient"> Marine</span>
+                </br>
+                <span property="hasClient"> Alaa</span>
+                </br>
+                <span property="hasClient"> Fanny</span>
+                </br>
+                - Destination : <span property="hasDestination"> Desert</span>
+                </br>
+                - Transportation By<span property="TransportationBy"> Plane</span>
+                </br>
+                -Price<span property="price"> 1000</span>
+
+                </br>
+                </br>
+            </div>
+        </div>
+        <button type="button" class="collapsible">Trip Volcano</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="tripvolcano" typeof="Trip">
+                - Our Clients for the trip to volcan :
+                </br>
+                <span property="hasClient"> Julien</span>
+                </br>
+                <span property="hasClient"> Marine</span>
+                </br>
+                <span property="hasClient"> Alaa</span>
+                </br>
+
+                - Destination : <span property="hasDestination"> Volcano</span>
+                </br>
+                - Transportation By<span property="TransportationBy"> Bus</span>
+                </br>
+                -Price<span property="price"> 1000</span>
+
+                </br>
+                </br>
+            </div>
+        </div>
+        <button type="button" class="collapsible">Trip Alpes</button>
+        <div class="content">
+            <div vocab="http://agency.org/" resource="tripalpes" typeof="Trip">
+                - Our Clients for the trip to Alpes:
+                </br>
+                <span property="hasClient"> Kevin</span>
+                </br>
+                <span property="hasClient"> Youssra</span>
+                </br>
+                <span property="hasClient"> Alaa</span>
+                </br>
+                <span property="hasClient"> Sam</span>
+                </br>
+                - Destination : <span property="hasDestination"> Alpes</span>
+                </br>
+                - Transportation By<span property="TransportationBy"> Bus</span>
+                </br>
+                -Price<span property="price"> 300</span>
+
+                </br>
+                </br>
+            </div>
+        </div>
+
+    </div>
+    <hr />
+    <div>
+        <button type="button" class="collapsible">Admin tools</button>
+        <div class="content">
+            <button onclick="cheapTrips()">Show cheap trips (under 500€)</button>
+            <button onclick="setPaid('true')">Set client as paid <b>true</b></button>
+            <button onclick="setPaid('false')">Set client as paid <b>false</b></button>
+                        <button onclick="deleteClient()">Delete client</button>
+        </div>
+        <div id="result">
+
+        </div>
+    </div>
+</body>
+<script>
+    // We took CSS Code from : https://www.w3schools.com/howto/howto_js_collapsible.asp
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+    // Show trips under 500€
+    function cheapTrips() {
+        document.getElementById('result').innerHTML = "";
+        var trips = document.querySelectorAll('div[typeof=Trip]');
+        trips.forEach(trip => {
+            var price = trip.querySelectorAll('span[property=price]');
+            if (parseInt(price[0].textContent) < 500) {
+                document.getElementById('result').innerHTML += trip.innerHTML;
+            }
+        });
+    }
+
+    // Set paid attribute to clients
+    function setPaid(bool) {
+        document.getElementById('result').innerHTML = "";
+        var person = prompt("Please enter person name", "Theo");
+        var client = document.querySelectorAll('div[resource=' + person + ']');
+        var paid = document.querySelectorAll('span[property=hasPaid]');
+        paid[0].innerHTML = bool;
+        if (client[0] != undefined) {
+            alert(person + ' is marked as paid = '+bool+', check result below!');
+            document.getElementById('result').innerHTML += client[0].innerHTML;
+        }
+        else {
+            alert("person probably does not exist.");
+        }
+
+    }
+    
+    // delete client
+    function deleteClient()
+    {
+     document.getElementById('result').innerHTML = "";
+        var person = prompt("Please enter person name to delete", "Theo");
+        var client = document.querySelectorAll('div[resource=' + person + ']');
+        
+        if (client[0] != undefined) {
+            alert(person + 'has been deleted!\n Check list in top.');
+            client[0].remove();
+        }
+        else {
+            alert("person probably does not exist.");
+        }
+    }
+</script>
+
+</html>

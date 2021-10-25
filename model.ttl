@@ -1,0 +1,145 @@
+@base <http://agency.org/#>.
+@prefix class: <http://agency.org/class#>.
+@prefix prop: <http://agency.org/porp#>.
+@prefix xsd: <https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/>.
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix resource: <http://agency.org/class/resource#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+#
+# Main Classes
+#
+
+class:Agency
+rdf:type rdfs:Class.
+
+class:Trip
+rdf:type rdfs:Class;
+rdfs:subClassOf class:Agency.
+
+class:Human
+rdf:type rdfs:Class.
+
+class:Destination
+rdf:type rdfs:Class.
+
+class:TransportMean
+rdf:type rdfs:Class.
+
+
+# Trip 
+### Props
+prop:hasDestination
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range class:Destination.
+
+prop:price 
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range xsd:Integer.
+
+prop:hasClient
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range class:Human.
+
+prop:hasPaid
+rdf:type rdf:Property;
+rdf:domain class:Client;
+rdf:range class:Client.
+
+prop:isClient
+rdf:type rdf:Property;
+rdf:domain class:Client;
+rdf:range class:Client.
+
+prop:hasGuide
+rdf:type rdf:Property;
+rdf:domain class:Guide;
+rdf:range class:Guide.
+prop:transportationBy
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range class:TransportMean.
+
+prop:hasStudentDiscount 
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range xsd:Integer. # Integer = %, e.g 15%
+
+prop:maxClients
+rdf:type rdf:Property;
+rdf:domain class:Trip;
+rdf:range xsd:Integer.
+
+
+# Human subclasses & properties
+class:Client
+rdf:type rdfs:Class;
+rdfs:subClassOf class:Human.
+
+class:Student
+rdf:type rdfs:Class;
+rdfs:subClassOf  class:Client;
+rdfs:subClassOf  class:Human.
+
+class:Guide
+rdf:type rdfs:Class;
+rdfs:subClassOf  class:Human.
+
+
+prop:age 
+rdf:type rdf:Property;
+rdf:domain class:Human;
+rdf:range xsd:Integer.
+
+prop:gender 
+rdf:type rdf:Property;
+rdf:domain class:Human;
+rdf:range xsd:String.
+
+# for guides
+prop:hasExperience
+rdf:type rdf:Property;
+rdf:domain class:Guide;
+rdf:range xsd:Boolean.
+
+# Destination
+# Properties
+prop:hasMagma
+rdf:type rdf:Property;
+rdf:domain class:Destination;
+rdf:range xsd:Boolean.
+
+prop:hasSnow
+rdf:type rdf:Property;
+rdf:domain class:Destination;
+rdf:range xsd:Boolean.
+
+prop:hasWildAnimals
+rdf:type rdf:Property;
+rdf:domain class:Destination;
+rdf:range xsd:Boolean.
+
+prop:hasWind
+rdf:type rdf:Property;
+rdf:domain class:Destination;
+rdf:range xsd:Boolean.
+
+prop:hostCountry
+rdf:type rdf:Property;
+rdf:domain class:Destination;
+rdf:range dbo:Country.
+
+################
+# Countries    #
+################
+
+# PROPS
+prop:requiresVisa # For french citizens
+rdf:type rdf:Property;
+rdf:domain dbo:Country;
+rdf:range xsd:Boolean.

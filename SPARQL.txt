@@ -1,0 +1,247 @@
+# Client request
+## Student request
+### Are there any trips with student discount? 
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+ask {
+  ?trip prop:hasStudentDiscount ?discount.
+}
+
+### Result
+| sparql/head | sparql/boolean | sparql/_xmlns                          |
+|-------------|----------------|----------------------------------------|
+|             | true           | http://www.w3.org/2005/sparql-results# |
+
+
+#--------------------------------------------------------------------------------------#
+## Normal client request
+### List all trips that are under 500 euros
+# QUERY : 
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix prop: <http://agency.org/porp#>.
+select * where {
+  ?trip a class:Trip.
+  ?trip prop:price ?price.
+  filter (?price < 500).
+}
+# Result
+| num | ?trip                                        | ?price |
+|-----|----------------------------------------------|--------|
+| 1   | <http://agency.org/class/resource#TripAlpes> | 300    |
+#--------------------------------------------------------------------------------------#
+
+# Guide requests
+
+## Select all HARD trips that go to hard destinations and require an experienced guide
+# QUERY : 
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix prop: <http://agency.org/porp#>.
+select DISTINCT ?trip  where {
+  ?trip rdf:type class:Trip
+  ?trip prop:hasGuide ?guide
+  ?guide prop:hasExperience true
+  ?trip prop:hasClient ?client
+  ?trip prop:hasDestination ?destination
+  ?destination prop:hasMagma|prop:hasSnow|prop:hasWildAnimals|prop:hasWind true
+}
+# Results
+| num | ?trip                                          |
+|-----|------------------------------------------------|
+| 1   | <http://agency.org/class/resource#TripEverest> |
+| 2   | <http://agency.org/class/resource#TripDesert>  |
+| 3   | <http://agency.org/class/resource#TripVolcano> |
+| 4   | <http://agency.org/class/resource#TripAlpes>   |
+
+
+#--------------------------------------------------------------------------------------#
+# Commercial agent queries
+### Trips with free places
+# QUERY : 
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix prop: <http://agency.org/porp#>.
+prefix resource: <http://agency.org/class/resource#>.
+SELECT 
+(SAMPLE(?trip) AS ?TRIP) 
+(COUNT(?client) as ?CLIENT_COUNT) 
+(?max as ?Max_Number_Of_Clients) 
+((?Max_Number_Of_Clients - ?CLIENT_COUNT) as ?remaining_places)
+WHERE {
+  ?trip a class:Trip .
+    ?trip prop:hasClient ?client.
+    ?trip prop:maxClients ?max.
+}
+GROUP BY ?trip 
+HAVING (?CLIENT_COUNT < ?Max_Number_Of_Clients)
+
+# Results
+| num | ?trip                                          | ?CLIENT_COUNT | ?Max_Number_Of_Clients | ?remaining_places |
+|-----|------------------------------------------------|---------------|------------------------|-------------------|
+| 1   | <http://agency.org/class/resource#TripCorse>   | 3             | 5                      | 2                 |
+| 2   | <http://agency.org/class/resource#TripDesert>  | 4             | 5                      | 1                 |
+| 3   | <http://agency.org/class/resource#TripVolcano> | 2             | 3                      | 1                 |
+
+
+
+#--------------------------------------------------------------------------------------#
+### Money from every TRIP (count only clients who have paid!!)
+# QUERY : 
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix prop: <http://agency.org/porp#>.
+prefix dbo: <http://dbpedia.org/ontology/>.
+prefix resource: <http://agency.org/class/resource#>.
+SELECT (SAMPLE(?trip) AS ?TRIP) (SUM(?price) as ?INCOME)
+WHERE {
+  ?trip a class:Trip ;
+    prop:price ?price;
+    prop:hasClient ?client.
+   ?client prop:hasPaid true.
+}
+GROUP BY ?trip 
+
+# Results
+| num | ?trip                                          | ?INCOME|
+|-----|------------------------------------------------|--------|
+| 1   | <http://agency.org/class/resource#TripAlpes>   | 600    |
+| 2   | <http://agency.org/class/resource#TripCorse>   | 2400   |
+| 3   | <http://agency.org/class/resource#TripDesert>  | 2000   |
+| 4   | <http://agency.org/class/resource#TripEverest> | 3600   |
+| 5   | <http://agency.org/class/resource#TripVolcano> | 2000   |
+
+
+
+#--------------------------------------------------------------------------------------#
+### Set Client (choose name) as PAID (true)
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+delete
+{
+	?client prop:hasPaid false.
+}
+insert {
+	?client prop:hasPaid true.
+}
+where {
+ 	?client prop:hasPaid false.
+ 	# run for one client (Fanny in this case)
+ 	filter regex(?client, "Fanny").
+}
+
+# Result
+| num | ?client                                  |
+|-----|------------------------------------------|
+| 1   | <http://agency.org/class/resource#Fanny> |
+
+
+
+#--------------------------------------------------------------------------------------#
+# Agency manager queries
+### Construct graph to show trips per Coutnry
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix dbo: <http://dbpedia.org/ontology/>
+construct {
+?Country ?Trip ?destination.
+} 
+where {
+?Country a dbo:Country.
+?destination prop:hostCountry ?Country.
+?Trip prop:hasDestination ?destination.
+}
+
+# Result !!! PLEASE USE CORESE TO SEE THE GRAPH !!!
+| num | ?Country                                   | ?Destination                               | ?Trip                                          |
+|-----|--------------------------------------------|--------------------------------------------|------------------------------------------------|
+| 1   | <http://agency.org/class/resource#France>  | <http://agency.org/class/resource#Corse>   | <http://agency.org/class/resource#TripCorse>   |
+| 2   | <http://agency.org/class/resource#France>  | <http://agency.org/class/resource#Alpes>   | <http://agency.org/class/resource#TripAlpes>   |
+| 3   | <http://agency.org/class/resource#Italy>   | <http://agency.org/class/resource#Volcano> | <http://agency.org/class/resource#TripVolcano> |
+| 4   | <http://agency.org/class/resource#Italy>   | <http://agency.org/class/resource#Alpes>   | <http://agency.org/class/resource#TripAlpes>   |
+| 5   | <http://agency.org/class/resource#India>   | <http://agency.org/class/resource#Everest> | <http://agency.org/class/resource#TripEverest> |
+| 6   | <http://agency.org/class/resource#Tunisia> | <http://agency.org/class/resource#Desert>  | <http://agency.org/class/resource#TripDesert>  |
+| 7   | <http://agency.org/class/resource#Morocco> | <http://agency.org/class/resource#Desert>  | <http://agency.org/class/resource#TripDesert>  |
+| 8   | <http://agency.org/class/resource#Egypt>   | <http://agency.org/class/resource#Desert>  | <http://agency.org/class/resource#TripDesert>  |
+
+#--------------------------------------------------------------------------------------#
+
+
+
+### Construct a graph of what countries need a visa, and what countries that do not need visa
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+construct {
+?Country ?NeedVisa ?NoVisa
+} 
+where {
+?Country a dbo:Country.
+?Country prop:requiresVisa ?NeedVisa.
+?Country prop:requiresVisa ?NoVisa.
+}
+
+# Result !!! PLEASE USE CORESE TO SEE THE GRAPH !!!
+# WARNING : THIS TABLE IS MISLEADING, PLEASE CHECK THE FINAL GRAPH
+| num | ?Country                                   | ?NeedVisa | ?NoVisa |
+|-----|--------------------------------------------|-----------|---------|
+| 1   | <http://agency.org/class/resource#Monaco>  | false     | false   |
+| 2   | <http://agency.org/class/resource#France>  | false     | false   |
+| 3   | <http://agency.org/class/resource#Italy>   | false     | false   |
+| 4   | <http://agency.org/class/resource#India>   | true      | true    |
+| 5   | <http://agency.org/class/resource#Tunisia> | true      | true    |
+| 6   | <http://agency.org/class/resource#Morocco> | true      | true    |
+| 7   | <http://agency.org/class/resource#Egypt>   | true      | true    |
+#--------------------------------------------------------------------------------------#
+
+
+
+### Count Male VS Female distribution of Clients in %
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+prefix resource: <http://agency.org/class/resource#>.
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+select 
+ ( COUNT(DISTINCT ?male) as ?Male_COUNT)
+ ( COUNT(DISTINCT ?female) as ?Female_COUNT)
+( (?Male_COUNT + ?Female_COUNT) as ?Total)
+
+(((?Female_COUNT / ?Total)*100) as ?Female_Percentage) 
+((100 - ?Female_Percentage) as ?Male_Percentage)
+ where {
+  ?trip prop:hasClient ?client.
+   ?male prop:gender "Male".
+   ?female prop:gender "Female".
+ }
+
+# Results
+| num | ?Male_COUNT | ?Female_COUNT | ?Total | ?Female_Percentage               | ?Male_Percentage                 |
+|-----|-------------|---------------|--------|----------------------------------|----------------------------------|
+| 1   | 7           | 4             | 11     | "36.36363636363637"^^xsd:decimal | "63.63636363636363"^^xsd:decimal |
+#------------------------------------------------------------------------------------------------------------------#
+
+
+
+### Count number of transportation means that are most used by the agency (DESC order)
+# QUERY : 
+prefix prop: <http://agency.org/porp#>.
+prefix resource: <http://agency.org/class/resource#>.
+prefix class: <http://agency.org/class#>.
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+select ?transportBy (COUNT(?transportBy) as ?TRANSPORT_COUNT) where{
+	?trip prop:transportationBy ?transportBy.
+}
+
+GROUP BY ?transportBy
+ORDER BY DESC(?TRANSPORT_COUNT)
+
+#Results
+| num | ?transportBy                             | ?TRANSPORT_COUNT |
+|-----|------------------------------------------|------------------|
+| 1   | <http://agency.org/class/resource#Bus>   | 2                |
+| 2   | <http://agency.org/class/resource#Plane> | 2                |
+| 3   | <http://agency.org/class/resource#Boat>  | 1                |
+#--------------------------------------------------------------------------------------#

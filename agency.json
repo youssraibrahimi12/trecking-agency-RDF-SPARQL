@@ -1,0 +1,391 @@
+[
+  {
+    "@id": "http://agency.org/class#Agency",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Client",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://agency.org/class#Human"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Destination",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Guide",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://agency.org/class#Human"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Human",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Student",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://agency.org/class#Client"
+      },
+      {
+        "@id": "http://agency.org/class#Human"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#TransportMean",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class#Trip",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://agency.org/class#Agency"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Class"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class/resource#Boat",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://agency.org/class#TransportMean"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class/resource#Bus",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://agency.org/class#TransportMean"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class/resource#Plane",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://agency.org/class#TransportMean"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/class/resource#Train",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://agency.org/class#TransportMean"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#age",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Human"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Integer"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasClient",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Trip"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#Human"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasDestination",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Trip"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasExperience",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Guide"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Boolean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasGuide",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Guide"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#Guide"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasMagma",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Boolean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasPaid",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Client"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#Client"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasSnow",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Boolean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasWildAnimals",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Boolean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hasWind",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Boolean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#hostCountry",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Destination"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://dbpedia.org/ontology/Country"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#isClient",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Client"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#Client"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#maxClients",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Trip"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Integer"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#price",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Trip"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "https://www.w3.org/TR/2006/NOTE-swbp-xsch-datatypes-20060314/Integer"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  },
+  {
+    "@id": "http://agency.org/porp#transportationBy",
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#domain": [
+      {
+        "@id": "http://agency.org/class#Trip"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#range": [
+      {
+        "@id": "http://agency.org/class#TransportMean"
+      }
+    ],
+    "https://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+      }
+    ]
+  }
+]

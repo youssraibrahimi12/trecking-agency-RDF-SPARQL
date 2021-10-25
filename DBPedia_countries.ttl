@@ -1,0 +1,32 @@
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dbo:	<http://dbpedia.org/ontology/> .
+dbo:country	rdf:type	rdf:Property .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+dbo:country	rdf:type	owl:ObjectProperty .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ns4:	<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+dbo:country	rdfs:subPropertyOf	ns4:hasLocation .
+@prefix wikidata:	<http://www.wikidata.org/entity/> .
+dbo:country	owl:equivalentProperty	wikidata:P17 ;
+	rdfs:label	"land"@nl ,
+		"\u03C7\u03CE\u03C1\u03B1"@el ,
+		"kraj"@pl ,
+		"country"@en ,
+		"estat"@ca ,
+		"pa\u00EDs"@pt ,
+		"pa\u00EDs"@es ,
+		"pays"@fr ,
+		"t\u00EDr"@ga ,
+		"Land"@de ;
+	rdfs:range	dbo:Country ;
+	rdfs:isDefinedBy	dbo: ;
+	rdfs:comment	"The country where the thing is located."@en .
+@prefix wdrs:	<http://www.w3.org/2007/05/powder-s#> .
+dbo:country	wdrs:describedby	<http://dbpedia.org/ontology/data/definitions.ttl> ;
+	owl:sameAs	dbo:country .
+@prefix prov:	<http://www.w3.org/ns/prov#> .
+@prefix ns8:	<http://mappings.dbpedia.org/index.php/OntologyProperty:> .
+dbo:country	prov:wasDerivedFrom	ns8:country .
+@prefix ns9:	<http://open.vocab.org/terms/> .
+dbo:	ns9:defines	dbo:country .
+<http://dbpedia.org/ontology/data/definitions.ttl>	ns9:describes	dbo:country .
